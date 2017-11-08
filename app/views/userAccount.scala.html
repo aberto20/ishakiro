@@ -1,0 +1,303 @@
+
+@backMain("Users") {
+    <div ng-controller="hrCtr">
+        @header.backHeard()
+
+        <div style="background-color: #e1e0de" class=" visible-lg col-lg-12">
+            <br>
+            <div  class="col-lg-1"></div>
+            <h1 class="col-lg-10">System users</h1>
+            <div  class="col-lg-1"></div>
+            <br>
+        </div>
+        <div  class="col-lg-1"></div>
+        <div  class="col-lg-10 panel panel-default" >
+            <div style="margin-bottom: 3%" class="col-lg-12">
+            @header.dashboardHead("user")
+            </div>
+            <div>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" data-toggle="modal" data-target="#new">Add user &nbsp;<small class="fa fa-plus"></small></button> </div>
+            <br>
+            <div id="new" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                    <div class="modal-content">
+                        <form name="myForm" novalidate ng-submit="registerUser(user)">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">New user</h4>
+                                <div class="alert alert-danger" ng-show="message">{{message}}</div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="">
+
+                                    <div class="formholder">
+                                        <div class="randompad">
+
+                                            <fieldset>
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.names.$dirty && myForm.names.$invalid ,'has-success has-feedback': myForm.names.$dirty && myForm.names.$valid } ">
+                                                    <label for="names" class=" col-lg-4 control-label">Names:</label>
+                                                    <div class="col-lg-8">
+                                                        <input type="text"   required class="form-control" pattern="^[A-z ]+$"  name="names" ng-model="user.names" placeholder="Enter your names"/>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.names.$error" ng-if="myForm.names.$dirty">
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span ng-message="pattern">Field must be alphabets only .</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.names.$dirty && myForm.names.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.names.$dirty && myForm.names.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.role.$dirty && myForm.role.$invalid ,'has-success has-feedback': myForm.role.$dirty && myForm.role.$valid } ">
+                                                    <label for="names" class="col-lg-4 control-label">User role:</label>
+                                                    <div class="col-lg-8">
+                                                        <select ng-model="user.role" required class="form-control">
+                                                            <option value="--Select--">--Select--</option>
+                                                            <option value="Admin">Admin</option>
+                                                            <option value="LowUser">LowUser</option>
+                                                        </select>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.role.$error" ng-if="myForm.role.$dirty">
+                                                            <span ng-message="maxlength">Field must be  10 characters.</span>
+                                                            <span ng-message="minlength">Field must be  10 characters.</span>
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span ng-message="pattern">Field must be numeric only .</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.role.$dirty && myForm.role.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.role.$dirty && myForm.role.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.phone.$dirty && myForm.phone.$invalid ,'has-success has-feedback': myForm.phone.$dirty && myForm.phone.$valid } ">
+                                                    <label for="names" class="col-lg-4 control-label">Phone:</label>
+                                                    <div class="col-lg-8">
+                                                        <input type="text"  required class="form-control" pattern="^[0-9 ]+$"  name="phone" ng-model="user.phone" maxlength="10" minlength="10" placeholder="Enter your phone"/>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.phone.$error" ng-if="myForm.phone.$dirty">
+                                                            <span ng-message="maxlength">Field must be  10 characters.</span>
+                                                            <span ng-message="minlength">Field must be  10 characters.</span>
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span ng-message="pattern">Field must be numeric only .</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.phone.$dirty && myForm.phone.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.phone.$dirty && myForm.phone.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.email.$dirty && myForm.email.$invalid ,'has-success has-feedback': myForm.email.$dirty && myForm.email.$valid } ">
+                                                    <label for="names" class="col-lg-4 control-label">Email:</label>
+                                                    <div class="col-lg-8">
+                                                        <input type="email"  required class="form-control"  name="email" ng-model="user.email" placeholder="Enter your email"/>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.email.$error" ng-if="myForm.email.$dirty">
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span ng-message="email">Invalid Email .</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.email.$dirty && myForm.email.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.email.$dirty && myForm.email.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.password.$dirty && myForm.password.$invalid ,'has-success has-feedback': myForm.password.$dirty && myForm.password.$valid } ">
+                                                    <label for="password" class=" col-lg-4 control-label">Password:</label>
+                                                    <div class="col-lg-8">
+                                                        <input type="password"  required class="form-control" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  name="password" ng-model="user.password"   placeholder="Create password"/>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.password.$error" ng-if="myForm.password.$dirty">
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span ng-message="pattern">Field must contain uppercase,lowercase,number,Special character,min 8Character .</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.password.$dirty && myForm.password.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.password.$dirty && myForm.password.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group" >
+                                                    <label for="names" class="col-lg-4 control-label">Comfirm password:</label>
+                                                    <div class="col-lg-8">
+                                                        <input type="password" ng-change="confirmPassword(user)"   class="form-control" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  name="confPassword" ng-model="confPassword"  placeholder="Confirm password"/>
+                                                        <div ng-show="passwordCheck" style="color: maroon">
+                                                            Password is not match.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" ng-disabled="employeeId=='--Select--'||myForm.$invalid" class="btn btn-success" >Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table  class="table">
+                    <thead>
+                        <th>#</th>
+                        <th>Names</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Join Date</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="a in users|itemsPerPage:10">
+                            <td>{{$index}}</td>
+                            <td>{{a.names}}</td>
+                            <td>{{a.phone}}</td>
+                            <td>{{a.email}}</td>
+                            <td>{{a.role}}</td>
+                            <td>{{a.joinDate}}</td>
+                            <td><div class="btn-group-sm"><button href="#edit{{a.id}}" data-toggle="modal" class="btn btn-info pull-left"><small class="fa fa-edit"></small></button>&nbsp;<button href="#delete{{a.id}}" data-toggle="modal"  class="btn btn-danger"><small class="glyphicon glyphicon-remove-sign"></small></button></div>
+                                    <!-- Modal -->
+                                <div id="{{'edit'+a.id}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Edit user</h4>
+                                            </div>
+                                            <form ng-submit="editUser(a)">
+                                                <div class="modal-body">
+                                                    <div class="">
+
+                                                        <div class="formholder">
+                                                            <div class="randompad">
+
+                                                                <fieldset>
+                                                                    <div  class="form-group" ng-class="{'has-error has-feedback': myForm.names.$dirty && myForm.names.$invalid ,'has-success has-feedback': myForm.names.$dirty && myForm.names.$valid } ">
+                                                                        <label for="names" class=" col-lg-4 control-label">Names:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <input type="text"   required class="form-control" pattern="^[A-z ]+$"  name="names" ng-model="a.names" placeholder="Enter your names"/>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.names.$error" ng-if="myForm.names.$dirty">
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span ng-message="pattern">Field must be alphabets only .</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.names.$dirty && myForm.names.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.names.$dirty && myForm.names.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  class="form-group" ng-class="{'has-error has-feedback': myForm.role.$dirty && myForm.role.$invalid ,'has-success has-feedback': myForm.role.$dirty && myForm.role.$valid } ">
+                                                                        <label for="names" class="col-lg-4 control-label">User role:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <select ng-model="a.role" required class="form-control">
+                                                                                <option value="--Select--">--Select--</option>
+                                                                                <option value="Admin">Admin</option>
+                                                                                <option value="LowUser">LowUser</option>
+                                                                            </select>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.role.$error" ng-if="myForm.role.$dirty">
+                                                                                <span ng-message="maxlength">Field must be  10 characters.</span>
+                                                                                <span ng-message="minlength">Field must be  10 characters.</span>
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span ng-message="pattern">Field must be numeric only .</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.role.$dirty && myForm.role.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.role.$dirty && myForm.role.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  class="form-group" ng-class="{'has-error has-feedback': myForm.phone.$dirty && myForm.phone.$invalid ,'has-success has-feedback': myForm.phone.$dirty && myForm.phone.$valid } ">
+                                                                        <label for="names" class="col-lg-4 control-label">Phone:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <input type="text"  required class="form-control" pattern="^[0-9 ]+$"  name="phone" ng-model="a.phone" maxlength="10" minlength="10" placeholder="Enter your phone"/>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.phone.$error" ng-if="myForm.phone.$dirty">
+                                                                                <span ng-message="maxlength">Field must be  10 characters.</span>
+                                                                                <span ng-message="minlength">Field must be  10 characters.</span>
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span ng-message="pattern">Field must be numeric only .</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.phone.$dirty && myForm.phone.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.phone.$dirty && myForm.phone.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  class="form-group" ng-class="{'has-error has-feedback': myForm.email.$dirty && myForm.email.$invalid ,'has-success has-feedback': myForm.email.$dirty && myForm.email.$valid } ">
+                                                                        <label for="names" class="col-lg-4 control-label">Email:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <input type="email"  required class="form-control"  name="email" ng-model="a.email" placeholder="Enter your email"/>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.email.$error" ng-if="myForm.email.$dirty">
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span ng-message="email">Invalid Email .</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.email.$dirty && myForm.email.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.email.$dirty && myForm.email.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </fieldset>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit"  class="btn btn-success" >Submit</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                    <!-- Modal -->
+                                <div id="{{'delete'+a.id}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <form ng-submit="deleteUser(a)">
+                                                <div class="modal-body">
+                                                    are you sure to delete {{a.names}}  ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-success" >Yes</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <th>#</th>
+                        <th>Names</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Join Date</th>
+                        <th>Action</th>
+                    </tfoot>
+                </table>
+            </div>
+            <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/assets/partials/tables/dirPagination.tpl.html"></dir-pagination-controls>
+
+
+
+
+        </div >
+
+        <div  class="col-lg-1"></div>
+        <div class="col-lg-12">
+        @footer()
+        </div>
+
+    </div>
+
+
+
+}

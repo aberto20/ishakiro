@@ -1,0 +1,95 @@
+
+
+<h3 style="margin:0px; padding:0px">
+    <div>
+    Report of the specification of available rooms
+
+        <button class="btn btn-default pull-right" ng-click="printDiv('forprinting')">Print</button>
+    </div>
+</h3>
+<hr>
+<div class="row">
+<div class="col-lg-7">
+<label style="color:gray">Search for the rooms</label>
+<input placeholder="Enter room details" class="form-control">
+</div>
+
+<div class="col-lg-5">
+<label style="color:gray">Date</label>
+    <div class="input-group">
+    <input placeholder="Enter room details" class="form-control">
+        <span class="input-group-btn">
+            <button class="btn btn-primary">Search</button>
+        </span>
+    </div>
+</div>
+</div>
+
+
+
+<table class="table">
+    <tr>
+        <th>Room name</th><th>Room capacity</th><th>Room price per 2 hours</th><th>Room price per day</th><th>Available</th>
+    </tr>
+    <tr>
+        <td>Lemigo 1</td><td>200 people</td><td>150,000 Rwf</td><td>700,000 Rwf</td><td><span class="glyphicon glyphicon-ok-circle" style="color:green"></span> Yes</td>
+    </tr>
+    <tr>
+        <td>Admin side</td><td>60 people</td><td>NA</td><td>500,000 Rwf</td><td><span class="glyphicon glyphicon-ok-circle" style="color:green"></span> Yes</td>
+    </tr>
+    <tr>
+        <td>Parking side</td><td>60 people</td><td>NA</td><td>500,000 Rwf</td><td> <span class="glyphicon glyphicon-ban-circle" style="color:red"></span> No</td>
+    </tr>
+    <tr>
+        <td>Lemigo 3</td><td>120 people</td><td>NA</td><td>500,000 Rwf</td><td><span class="glyphicon glyphicon-ok-circle" style="color:green"></span> Yes</td>
+    </tr>
+    <tr>
+        <td>Ihema</td><td>70 people</td><td>500,000 Rwf</td><td>500,000 Rwf</td><td><span class="glyphicon glyphicon-ok-circle" style="color:green"></span> Yes</td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+<div id="forprinting" style="display:none">
+    <div style="height:100%; background:white; margin:10px; padding:10px">
+
+        <div class="panel panel-default" style="padding:10px;">
+
+            <h2>Lemigo Hotel</h2>
+            Kigali / Rwanda<br>
+            Tel: 07863636344<br>
+            Email: info@lemigo.com<br>
+
+
+        </div>
+
+
+        <h1 style="">Report of the specification of available rooms</h1>
+
+        <table class="table">
+            <tr>
+                <th>Room name</th><th>Room capacity</th><th>Room price per 2 hours</th><th>Room price per day</th><th>Available</th>
+            </tr>
+            <tr>
+                <td>Lemigo 1</td><td>200 people</td><td>150,000 Rwf</td><td>700,000 Rwf</td><td><span class="glyphicon glyphicon-ok-circle" style="color:green"></span> Yes</td>
+            </tr>
+            <tr>
+                <td>Admin side</td><td>60 people</td><td>NA</td><td>500,000 Rwf</td><td><span class="glyphicon glyphicon-ok-circle" style="color:green"></span> Yes</td>
+            </tr>
+            <tr>
+                <td>Parking side</td><td>60 people</td><td>NA</td><td>500,000 Rwf</td><td> <span class="glyphicon glyphicon-ban-circle" style="color:red"></span> No</td>
+            </tr>
+            <tr>
+                <td>Lemigo 3</td><td>120 people</td><td>NA</td><td>500,000 Rwf</td><td><span class="glyphicon glyphicon-ok-circle" style="color:green"></span> Yes</td>
+            </tr>
+            <tr>
+                <td>Ihema</td><td>70 people</td><td>500,000 Rwf</td><td>500,000 Rwf</td><td><span class="glyphicon glyphicon-ok-circle" style="color:green"></span> Yes</td>
+            </tr>
+        </table>
+    </div>
+
+</div>

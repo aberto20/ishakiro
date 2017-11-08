@@ -1,0 +1,81 @@
+
+
+<h3 style="margin:0px; padding:0px">
+    <div>
+        Report of clients information
+
+        <button class="btn btn-default pull-right" ng-click="printDiv('forprinting')">Print</button>
+    </div>
+</h3>
+<hr>
+<div class="row">
+    <div class="col-lg-7">
+        <label style="color:gray">Search for clients booking history</label>
+        <input placeholder="Enter room details" class="form-control">
+    </div>
+
+    <div class="col-lg-5">
+        <label style="color:gray">From date</label>
+        <div class="input-group">
+            <input placeholder="Enter room details" class="form-control">
+        <span class="input-group-btn">
+            <button class="btn btn-primary">Search</button>
+        </span>
+        </div>
+    </div>
+</div>
+
+
+
+<table class="table">
+    <tr>
+        <th>Client names</th><th>Organization</th><th>Number of bookings</th><th>Due amount</th><th>Paid amount</th>
+    </tr>
+    <tr>
+        <td>Alice UWOYIHEREYE</td><td>ULK</td><td>1</td><td>700,000 Rwf</td><td>700,000 Rwf</td>
+    </tr>
+    <tr>
+        <td>Jean NIYOTWAGIRA</td><td>TorQue Ltd</td><td>1</td><td>500,000 Rwf</td><td>500,000 Rwf</td>
+    </tr>
+    <tr>
+        <td>Jacques Tresor</td><td>NA</td><td>1</td><td>500,000 Rwf</td><td>0 Rwf</td>
+    </tr>
+
+    </tr>
+</table>
+
+<div id="forprinting" style="display:none">
+    <div style="height:100%; background:white; margin:10px; padding:10px">
+
+        <div class="panel panel-default" style="padding:10px;">
+
+            <h2>Lemigo Hotel</h2>
+            Kigali / Rwanda<br>
+            Tel: 07863636344<br>
+            Email: info@lemigo.com<br>
+
+
+        </div>
+
+
+        <h1 style="">Report of clients information</h1>
+
+        <table class="table">
+            <tr>
+                <th>Client names</th><th>Organization</th><th>Number of bookings</th><th>Due amount</th><th>Paid amount</th>
+            </tr>
+            <tr>
+                <td>Alice UWOYIHEREYE</td><td>ULK</td><td>1</td><td>700,000 Rwf</td><td>700,000 Rwf</td>
+            </tr>
+            <tr>
+                <td>Jean NIYOTWAGIRA</td><td>TorQue Ltd</td><td>1</td><td>500,000 Rwf</td><td>500,000 Rwf</td>
+            </tr>
+            <tr>
+                <td>Jacques Tresor</td><td>NA</td><td>1</td><td>500,000 Rwf</td><td>0 Rwf</td>
+            </tr>
+
+            </tr>
+        </table>
+    </div>
+
+</div>

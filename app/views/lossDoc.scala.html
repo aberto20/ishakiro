@@ -1,0 +1,358 @@
+
+@backMain("Loss document") {
+    <div ng-controller="hrCtr" >
+        @header.backHeard()
+
+        <div style="background-color: #e1e0de" class=" visible-lg col-lg-12">
+            <br>
+            <div  class="col-lg-1"></div>
+            <h1 class="col-lg-10">Documents</h1>
+            <div  class="col-lg-1"></div>
+            <br>
+        </div>
+        <div  class="col-lg-1"></div>
+        <div  class="col-lg-10 panel panel-default" >
+            <div style="margin-bottom: 3%" class="col-lg-12">
+            @header.dashboardHead("doc")
+            </div>
+            <div>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" data-toggle="modal" data-target="#new">Add document &nbsp;<small class="fa fa-plus"></small></button> </div>
+            <br>
+            <div id="new" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                    <div class="modal-content">
+                        <form name="myForm" novalidate ng-submit="saveDocument(doc)">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">New document</h4>
+                                <div class="alert alert-danger" ng-show="message">{{message}}</div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="">
+
+                                    <div class="formholder">
+                                        <div class="randompad">
+
+                                            <fieldset>
+
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.docType.$dirty && myForm.docType.$invalid ,'has-success has-feedback': myForm.docType.$dirty && myForm.docType.$valid } ">
+                                                    <label for="docType" class="col-lg-4 control-label">Document type:</label>
+                                                    <div class="col-lg-8">
+                                                        <select ng-model="doc.docType" name="docType" required class="form-control">
+                                                            <option value="--Select--">--Select--</option>
+                                                            <option ng-repeat="m in docTypes" value="{{m.docName}}">{{m.docName}}</option>
+                                                        </select>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.docType.$error" ng-if="myForm.docType.$dirty">
+                                                            <span ng-message="maxlength">Field must be  10 characters.</span>
+                                                            <span ng-message="minlength">Field must be  10 characters.</span>
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span ng-message="pattern">Field must be numeric only .</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.docType.$dirty && myForm.docType.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.docType.$dirty && myForm.docType.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.docNumb.$dirty && myForm.docNumb.$invalid ,'has-success has-feedback': myForm.docNumb.$dirty && myForm.docNumb.$valid } ">
+                                                    <label for="docNumb" class="col-lg-4 control-label">Document number:</label>
+                                                    <div class="col-lg-8">
+                                                        <input type="text"  required class="form-control"  name="docNumb" ng-model="doc.docNumb"  placeholder="Enter your doc number"/>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.docNumb.$error" ng-if="myForm.docNumb.$dirty">
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.docNumb.$dirty && myForm.docNumb.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.docNumb.$dirty && myForm.docNumb.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.docHolder.$dirty && myForm.docHolder.$invalid ,'has-success has-feedback': myForm.docHolder.$dirty && myForm.docHolder.$valid } ">
+                                                    <label for="names" class="col-lg-4 control-label">Doc owner:</label>
+                                                    <div class="col-lg-8">
+                                                        <input type="text"  required class="form-control"  name="docHolder" ng-model="doc.docHolder" placeholder="Enter own name"/>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.docHolder.$error" ng-if="myForm.docHolder.$dirty">
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.docHolder.$dirty && myForm.docHolder.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.docHolder.$dirty && myForm.docHolder.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.dob.$dirty && myForm.dob.$invalid ,'has-success has-feedback': myForm.dob.$dirty && myForm.dob.$valid } ">
+                                                    <label for="password" class=" col-lg-4 control-label">Date of birth:</label>
+                                                    <div class="col-lg-8">
+                                                        <input type="text"  required class="form-control"   name="dob" ng-model="doc.dob" data-date-format="dd-mm-yyyy" data-provide="datepicker"   placeholder="date of birth"/>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.dob.$error" ng-if="myForm.dob.$dirty">
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.dob.$dirty && myForm.dob.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.dob.$dirty && myForm.dob.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group" ng-class="{'has-error has-feedback': myForm.gender.$dirty && myForm.gender.$invalid ,'has-success has-feedback': myForm.gender.$dirty && myForm.gender.$valid } ">
+                                                    <label for="docType" class="col-lg-4 control-label">Gender:</label>
+                                                    <div class="col-lg-8">
+                                                        <select ng-model="doc.gender" name="gender" required class="form-control">
+                                                            <option value="--Select--">--Select--</option>
+                                                            <option  value="M">Male</option>
+                                                            <option  value="F">Female</option>
+                                                        </select>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.gender.$error" ng-if="myForm.gender.$dirty">
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.gender.$dirty && myForm.gender.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.gender.$dirty && myForm.gender.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group"  ng-class="{'has-error has-feedback': myForm.placeOfIssue.$dirty && myForm.placeOfIssue.$invalid ,'has-success has-feedback': myForm.placeOfIssue.$dirty && myForm.placeOfIssue.$valid } " >
+                                                    <label for="names" class="col-lg-4 control-label">Place of Issue:</label>
+                                                    <div class="col-lg-8">
+
+                                                        <textarea type="text"   class="form-control"   name="placeOfIssue" ng-model="doc.placeOfIssue" required  placeholder="example :Nyarugenge/Nyamirambo"></textarea>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.placeOfIssue.$error" ng-if="myForm.placeOfIssue.$dirty">
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.placeOfIssue.$dirty && myForm.placeOfIssue.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.placeOfIssue.$dirty && myForm.placeOfIssue.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="form-group"  ng-class="{'has-error has-feedback': myForm.placeOfFind.$dirty && myForm.placeOfFind.$invalid ,'has-success has-feedback': myForm.placeOfFind.$dirty && myForm.placeOfFind.$valid } " >
+                                                    <label for="placeOfFind" class="col-lg-4 control-label">Place of Issue:</label>
+                                                    <div class="col-lg-8">
+                                                        <textarea type="text"   class="form-control"   name="placeOfFind" ng-model="doc.placeOfFind"  placeholder="example :Nyarugenge/Nyamirambo/Mumena"></textarea>
+                                                        <div role="alert" class="help-block" ng-messages="myForm.placeOfFind.$error" ng-if="myForm.placeOfFind.$dirty">
+                                                            <span ng-message="required">Field is required.</span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.placeOfFind.$dirty && myForm.placeOfFind.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                            <span style="margin-right: 3%" ng-show="myForm.placeOfFind.$dirty && myForm.placeOfFind.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </fieldset>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" ng-disabled="employeeId=='--Select--'||myForm.$invalid" class="btn btn-success" >Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table  class="table">
+                    <thead>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Number</th>
+                        <th>Owner</th>
+                        <th>Gender</th>
+                        <th>Dob</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="a in documents|itemsPerPage:10">
+                            <td>{{$index}}</td>
+                            <td>{{a.regDate}}</td>
+                            <td>{{a.docType}}</td>
+                            <td>{{a.docNumb}}</td>
+                            <td>{{a.docHolder}}</td>
+                            <td>{{a.gender}}</td>
+                            <td>{{a.dob}}</td>
+                            <td>{{a.status}}</td>
+                            <td><div class="btn-group-sm"><button href="#edit{{a.id}}" data-toggle="modal" class="btn btn-info pull-left"><small class="fa fa-edit"></small></button>&nbsp;<button ng-if="currentUser.User=='Admin'" href="#delete{{a.id}}" data-toggle="modal"  class="btn btn-danger"><small class="glyphicon glyphicon-remove-sign"></small></button></div>
+                                    <!-- Modal -->
+                                <div id="{{'edit'+a.id}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Edit document</h4>
+                                            </div>
+                                            <form ng-submit="editDocument(a)">
+                                                <div class="modal-body">
+                                                    <div class="">
+
+                                                        <div class="formholder">
+                                                            <div class="randompad">
+
+                                                                <fieldset>
+
+                                                                    <div  class="form-group" ng-class="{'has-error has-feedback': myForm.docType.$dirty && myForm.docType.$invalid ,'has-success has-feedback': myForm.docType.$dirty && myForm.docType.$valid } ">
+                                                                        <label for="docType" class="col-lg-4 control-label">Document type:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <select ng-model="a.docType" name="docType" required class="form-control">
+                                                                                <option value="--Select--">--Select--</option>
+                                                                                <option ng-repeat="m in docTypes" value="{{m.docName}}">{{m.docName}}</option>
+                                                                            </select>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.docType.$error" ng-if="myForm.docType.$dirty">
+                                                                                <span ng-message="maxlength">Field must be  10 characters.</span>
+                                                                                <span ng-message="minlength">Field must be  10 characters.</span>
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span ng-message="pattern">Field must be numeric only .</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.docType.$dirty && myForm.docType.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.docType.$dirty && myForm.docType.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  class="form-group" ng-class="{'has-error has-feedback': myForm.docNumb.$dirty && myForm.docNumb.$invalid ,'has-success has-feedback': myForm.docNumb.$dirty && myForm.docNumb.$valid } ">
+                                                                        <label for="docNumb" class="col-lg-4 control-label">Document number:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <input type="text"  required class="form-control"  name="docNumb" ng-model="a.docNumb"  placeholder="Enter your doc number"/>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.docNumb.$error" ng-if="myForm.docNumb.$dirty">
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.docNumb.$dirty && myForm.docNumb.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.docNumb.$dirty && myForm.docNumb.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  class="form-group" ng-class="{'has-error has-feedback': myForm.docHolder.$dirty && myForm.docHolder.$invalid ,'has-success has-feedback': myForm.docHolder.$dirty && myForm.docHolder.$valid } ">
+                                                                        <label for="names" class="col-lg-4 control-label">Doc owner:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <input type="text"  required class="form-control"  name="docHolder" ng-model="a.docHolder" placeholder="Enter own name"/>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.docHolder.$error" ng-if="myForm.docHolder.$dirty">
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.docHolder.$dirty && myForm.docHolder.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.docHolder.$dirty && myForm.docHolder.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  class="form-group" ng-class="{'has-error has-feedback': myForm.dob.$dirty && myForm.dob.$invalid ,'has-success has-feedback': myForm.dob.$dirty && myForm.dob.$valid } ">
+                                                                        <label for="password" class=" col-lg-4 control-label">Date of birth:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <input type="text"  required class="form-control"   name="dob" ng-model="a.dob" data-date-format="dd-mm-yyyy" data-provide="datepicker"   placeholder="date of birth"/>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.dob.$error" ng-if="myForm.dob.$dirty">
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.dob.$dirty && myForm.dob.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.dob.$dirty && myForm.dob.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  class="form-group" ng-class="{'has-error has-feedback': myForm.gender.$dirty && myForm.gender.$invalid ,'has-success has-feedback': myForm.gender.$dirty && myForm.gender.$valid } ">
+                                                                        <label for="docType" class="col-lg-4 control-label">Gender:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <select ng-model="a.gender" name="gender" required class="form-control">
+                                                                                <option value="--Select--">--Select--</option>
+                                                                                <option  value="M">Male</option>
+                                                                                <option  value="F">Female</option>
+                                                                            </select>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.gender.$error" ng-if="myForm.gender.$dirty">
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.gender.$dirty && myForm.gender.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.gender.$dirty && myForm.gender.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  class="form-group"  ng-class="{'has-error has-feedback': myForm.placeOfIssue.$dirty && myForm.placeOfIssue.$invalid ,'has-success has-feedback': myForm.placeOfIssue.$dirty && myForm.placeOfIssue.$valid } " >
+                                                                        <label for="names" class="col-lg-4 control-label">Place of Issue:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <textarea type="text"   class="form-control"   name="placeOfIssue" ng-model="a.placeOfIssue" required  placeholder="example :Nyarugenge/Nyamirambo"></textarea>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.placeOfIssue.$error" ng-if="myForm.placeOfIssue.$dirty">
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.placeOfIssue.$dirty && myForm.placeOfIssue.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.placeOfIssue.$dirty && myForm.placeOfIssue.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  class="form-group"  ng-class="{'has-error has-feedback': myForm.placeOfFind.$dirty && myForm.placeOfFind.$invalid ,'has-success has-feedback': myForm.placeOfFind.$dirty && myForm.placeOfFind.$valid } " >
+                                                                        <label for="placeOfFind" class="col-lg-4 control-label">Place of Issue:</label>
+                                                                        <div class="col-lg-8">
+                                                                            <textarea type="text"   class="form-control"   name="placeOfFind" ng-model="a.placeOfFind"  placeholder="example :Nyarugenge/Nyamirambo/Mumena"></textarea>
+                                                                            <div role="alert" class="help-block" ng-messages="myForm.placeOfFind.$error" ng-if="myForm.placeOfFind.$dirty">
+                                                                                <span ng-message="required">Field is required.</span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.placeOfFind.$dirty && myForm.placeOfFind.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                                                <span style="margin-right: 3%" ng-show="myForm.placeOfFind.$dirty && myForm.placeOfFind.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </fieldset>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit"  class="btn btn-success" >Submit</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                    <!-- Modal -->
+                                <div id="{{'delete'+a.id}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <form ng-submit="deleteDocument(a)">
+                                                <div class="modal-body">
+                                                    are you sure to delete {{a.names}}  ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-success" >Yes</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Number</th>
+                        <th>Owner</th>
+                        <th>Gender</th>
+                        <th>Dob</th>
+                        <th>Action</th>
+                    </tfoot>
+                </table>
+            </div>
+            <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/assets/partials/tables/dirPagination.tpl.html"></dir-pagination-controls>
+
+
+
+
+        </div >
+
+        <div  class="col-lg-1"></div>
+        <div class="col-lg-12">
+        @footer()
+        </div>
+
+    </div>
+
+
+
+}

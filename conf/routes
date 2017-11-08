@@ -1,0 +1,37 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                        controllers.Application.index()
+GET     /about                                   controllers.Application.about()
+GET     /ourJob                                   controllers.Application.ourJob()
+GET     /contact                                   controllers.Application.contact()
+GET     /dashboard                               controllers.Application.dashboard()
+GET     /logout                                  controllers.Application.logout()
+GET     /users                                   controllers.Application.users()
+GET     /docTypep                                controllers.Application.docTypep()
+GET     /documentsp                              controllers.Application.documentsp()
+GET     /message                                 controllers.Application.message()
+GET     /loadCurrentUser/                        controllers.Application.loadCurrentUser()
+GET     /findedDoc/:docType/:docNumber/          controllers.Application.findedDoc(docType,docNumber)
+GET     /searchDocument/:doc/                    controllers.Application.searchDocument(doc)
+GET     /loadUser/                               controllers.Application.loadUser()
+GET     /loadmsg/                                controllers.Application.loadmsg()
+GET     /loadDocument/                           controllers.Application.loadDocument()
+GET     /loadDocType/                            controllers.Application.loadDocType()
+POST    /registerUser/                           controllers.Application.registerUser()
+POST    /editUser/                               controllers.Application.editUser()
+POST    /DeleteUser/                             controllers.Application.DeleteUser()
+POST    /signin/                                 controllers.Application.signin()
+POST    /registerDoc/                            controllers.Application.registerDoc()
+POST    /editDoc/                                controllers.Application.editDoc()
+POST    /deleteDoc/                              controllers.Application.deleteDoc()
+POST    /registerDocType/                        controllers.Application.registerDocType()
+POST    /editDocType/                            controllers.Application.editDocType()
+POST    /deleteDocType/                          controllers.Application.deleteDocType()
+POST    /sendComment/                            controllers.Application.sendComment()
+POST    /deleteMsg/                              controllers.Application.deleteMsg()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,0 +1,27 @@
+@(page:String)
+
+<nav   class="navbar navbar-default  ">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar">
+               <small class="icon-bar"></small>
+               <small class="icon-bar"></small>
+               <small class="icon-bar"></small>
+            </button>
+            <a href="/"><img src="assets/images/ishakiro.png" width="150px" height="90px" class="img-responsive" alt="put hear here"></a>
+            <span style="color: #fff;font-size: 20px"  class="brand"><b>Shakisha Ibyo Wabuze !</b></span>
+        </div>
+        <div style="margin-top: 3%"  class="collapse navbar-collapse" id="myNavBar">
+            <ul class="nav navbar-nav navbar navbar-right">
+                 <li class="@if(page=="home"){ active}"><a href="/">Ahabanza</a></li>
+                 <li class="@if(page=="about"){ active}"><a href="/about">Abo turibo</a></li>
+                 <li class="@if(page=="ourJob"){ active}"><a href="/ourJob">Uko dukora</a></li>
+                 <li class="@if(page=="contact"){ active}"><a href="/contact">Tuvugishe</a></li>
+                <li class="@if(page==""){ active}"><a href="#" data-toggle="modal" data-target="#myModal" id="loginform">KWINJIRA<span class="glyphicon glyphicon-log-in"></span> </a></li>
+
+            </ul>
+
+        </div>
+    </div>
+
+</nav>

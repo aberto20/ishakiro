@@ -1,0 +1,114 @@
+
+@backMain("Document type") {
+    <div ng-controller="hrCtr">
+        @header.backHeard()
+
+        <div style="background-color: #e1e0de" class=" visible-lg col-lg-12">
+            <br>
+            <div  class="col-lg-1"></div>
+            <h1 class="col-lg-10">Message</h1>
+            <div  class="col-lg-1"></div>
+            <br>
+        </div>
+        <div  class="col-lg-1"></div>
+        <div  class="col-lg-10 panel panel-default" >
+            <div style="margin-bottom: 3%" class="col-lg-12">
+            @header.dashboardHead("msg")
+            </div>
+            &nbsp;
+
+            <div class="table-responsive">
+                <table  class="table">
+                    <thead class="success" >
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Names</th>
+                        <th>Subject</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="a in masg|itemsPerPage:10">
+                            <td>{{$index}}</td>
+                            <td>{{a.date}}</td>
+                            <td>{{a.names}}</td>
+                            <td>{{a.subject}}</td>
+                            <td>{{a.phone}}</td>
+                            <td>{{a.message}}</td>
+                            <td><div class="btn-group-sm"><button href="#edit{{a.id}}" data-toggle="modal" class="btn btn-info pull-left"><small class="fa fa-eye"></small>Message</button>&nbsp;<button href="#delete{{a.id}}" data-toggle="modal"  class="btn btn-danger"><small class="glyphicon glyphicon-remove-sign"></small></button></div>
+                                    <!-- Modal -->
+                                <div id="{{'edit'+a.id}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">{{a.names}} Message</h4>
+                                            </div>
+                                            <form >
+                                                <div class="modal-body">
+                                                    <textarea readonly class="form-control">{{a.message}}</textarea>
+                                                </div>
+
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                    <!-- Modal -->
+                                <div id="{{'delete'+a.id}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <form ng-submit="deleteMsg(a)">
+                                                <div class="modal-body">
+                                                    are you sure to delete {{a.names}}  ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-success" >Yes</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Names</th>
+                        <th>Subject</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>Action</th>
+                    </tfoot>
+                </table>
+                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/assets/partials/tables/dirPagination.tpl.html"></dir-pagination-controls>
+
+            </div>
+
+
+
+
+        </div >
+
+        <div  class="col-lg-1"></div>
+        <div class="col-lg-12">
+        @footer()
+        </div>
+
+    </div>
+
+
+
+}

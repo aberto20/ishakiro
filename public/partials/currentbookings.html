@@ -1,0 +1,81 @@
+
+
+<h3 style="margin:0px; padding:0px">
+    <div>
+        Report of current bookings
+
+        <button class="btn btn-default pull-right" ng-click="printDiv('forprinting')">Print</button>
+    </div>
+</h3>
+<hr>
+<div class="row">
+    <div class="col-lg-7">
+        <label style="color:gray">Search for booking details</label>
+        <input placeholder="Enter room details" class="form-control">
+    </div>
+
+    <div class="col-lg-5">
+        <label style="color:gray">Date</label>
+        <div class="input-group">
+            <input placeholder="Enter room details" class="form-control">
+        <span class="input-group-btn">
+            <button class="btn btn-primary">Search</button>
+        </span>
+        </div>
+    </div>
+</div>
+
+
+
+<table class="table">
+    <tr>
+        <th>Client names</th><th>Organization</th><th>Booked room</th><th>Date</th><th>Due amount</th><th>Paid amount</th>
+    </tr>
+    <tr>
+        <td>Alice UWOYIHEREYE</td><td>ULK</td><td>Lemigo 1</td><td>05/09/2015</td><td>700,000 Rwf</td><td>700,000 Rwf</td>
+    </tr>
+    <tr>
+        <td>Jean NIYOTWAGIRA</td><td>TorQue Ltd</td><td>Admin Side</td><td>04/09/2015</td><td>500,000 Rwf</td><td>500,000 Rwf</td>
+    </tr>
+    <tr>
+        <td>Jacques Tresor</td><td>NA</td><td>Parking Side</td><td>10/09/2015</td><td>500,000 Rwf</td><td>0 Rwf</td>
+    </tr>
+
+    </tr>
+</table>
+
+<div id="forprinting" style="display:none">
+    <div style="height:100%; background:white; margin:10px; padding:10px">
+
+        <div class="panel panel-default" style="padding:10px;">
+
+            <h2>Lemigo Hotel</h2>
+            Kigali / Rwanda<br>
+            Tel: 07863636344<br>
+            Email: info@lemigo.com<br>
+
+
+        </div>
+
+
+        <h1 style="">Report of current bookings</h1>
+
+        <table class="table">
+            <tr>
+                <th>Client names</th><th>Organization</th><th>Booked room</th><th>Date</th><th>Due amount</th><th>Paid amount</th>
+            </tr>
+            <tr>
+                <td>Alice UWOYIHEREYE</td><td>ULK</td><td>Lemigo 1</td><td>05/09/2015</td><td>700,000 Rwf</td><td>700,000 Rwf</td>
+            </tr>
+            <tr>
+                <td>Jean NIYOTWAGIRA</td><td>TorQue Ltd</td><td>Admin Side</td><td>04/09/2015</td><td>500,000 Rwf</td><td>500,000 Rwf</td>
+            </tr>
+            <tr>
+                <td>Jacques Tresor</td><td>NA</td><td>Parking Side</td><td>10/09/2015</td><td>500,000 Rwf</td><td>0 Rwf</td>
+            </tr>
+
+            </tr>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,287 @@
+
+@main("Home") {
+    <div ng-controller="hrCtr">
+
+@header.header("home")
+
+    <div style="background-color: #e1e0de" class="  col-lg-12">
+        <div class="col-lg-12">
+           <center><img style="width: 1145px;height: 90px" src="assets/images/NEW_BAVUGA-11102017.gif" class="img-thumbnail img-responsive"></center>
+        </div>
+    </div>
+    <div  class="col-lg-1">
+
+    </div>
+    <div style="background-color: #759e2e"  class="col-lg-10 panel panel-default" >
+<br>
+        @*<div  class="jumbotron" >*@
+            @*<center>*@
+                @*<h1 style="color: #2b669a">Find your lost documents </h1>*@
+                @*<p style="color: #2b669a">Irikoranabuhanga rifasha umuturarwanda wese watakaje ibyangombwa kubibona muburyo bworoshye</p>*@
+                @*<p style="color: #2b669a">Indangamuntu,Passport,i carita ya banki,impapuro zubutaka nibindi</p>*@
+                @*<br>*@
+            @*</center>*@
+
+
+        @*</div>*@
+
+        <div >
+          @*<center> <h1><b><i>Hitamo urupapuro wabuze.</i></b></h1></center>*@
+           <br>
+
+            @*<div style="font-size: small ;background-color: #cb8a13" class="col-lg-12">*@
+                @*<div class="col-lg-6">*@
+                    @*<div class="vertical-menu">*@
+                        @*<br>*@
+                        @*<a class="divider"  href="">Indangamunt(National id)<span class="glyphicon glyphicon-file"></span></a>*@
+                        @*<a class="divider" href="">Urupapuro rw'ingendo(Passport or Laisse passe)<span class="glyphicon glyphicon-file"></span></a>*@
+                        @*<a class="divider" href="">ATM(Bank card)<span class="glyphicon glyphicon-credit-card"></span></a>*@
+                        @*<a class="divider" href="">Ibipapuro by'ubutaka(Land paper)<span class="glyphicon glyphicon-file"></span></a>*@
+                        @*<br>*@
+                    @*</div>*@
+
+                @*</div>*@
+                @*<div class="col-lg-6">*@
+                    @*<div  class="vertical-menu">*@
+                        @*<br>*@
+                        @*<a class="divider" href="">Uruhushya ryo gutwara ikinyabiziga Burundu(Perme)<span class="glyphicon glyphicon-file"></span></a>*@
+                        @*<a class="divider" href="">Uruhushya ryo gutwara ikinyabiziga bya gateganyo(Provisoire)<span class="glyphicon glyphicon-file"></span></a>*@
+                        @*<a class="divider" href="">Carte jaune<span class="glyphicon glyphicon-file"></span></a>*@
+                        @*<br>*@
+                    @*</div>*@
+
+                @*</div>*@
+
+            @*</div>*@
+            @*<div class="col-lg-12">*@
+                @*<br>*@
+                @*<br>*@
+                @*<br>*@
+            @*</div>*@
+            <center>
+            <form >
+                <div class="col-md-2"></div>
+                <div class="col-md-8" >
+                    <div style="margin-top: -3%;margin-bottom: 5%;border-radius: 5%;" class="input-group">
+                        <span class="input-group-addon" style="font-weight:bold; font-size:20px; padding:0px"></span><input ng-model="search" type="text" class="form-control" placeholder="Shakisha ID,PASSPORT,ATM,PERMI Ukoresheje izina cg numero" style = "height:50px;width: 100%">
+                        <span class = "input-group-btn">
+
+                            <button type="submit" ng-click="searchDocument(search)" class="btn btn-sm btn-default" style = "font-weight:bold; font-size:20px; height:50px">Search</button>
+                        </span>
+                    </div>
+                <div ng-show="message" class="alert alert-success">{{message}}</div>
+                </div>
+                <div class="col-md-2"></div>
+            </form>
+            </center>
+            <div ng-show="result" class="col-lg-12">
+                <div class="col-lg-2"></div>
+                <div  class="col-lg-8">
+                <div  class="vertical-menu">
+                    <table  >
+                        <tr ng-repeat="n in findDoc">
+                            <td><center><a  data-target="#details" data-toggle="collapse" href=""><b>{{n.docHolder}}'s {{n.docType}}</b><span style="color: chartreuse" class="glyphicon glyphicon-exclamation-sign"></span></a><br></center>
+                            <div style="background-color: #fff"   class="col-lg-12 ">
+                                <table id="details" class="collapse ">
+                                    <tr>
+                                        <td style="float: left;font-size: small"><b>Numero:</b></td>
+                                        <td>{{n.docNumb}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="float: left"><b>Amazina yombi:</b></td>
+                                        <td>{{n.docHolder}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="float: left"><b>Ubwoko bw'urupapuro:</b></td>
+                                        <td>{{n.docType}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="float: left"><b>Itariki yamavuko:</b></td>
+                                        <td>{{n.dob}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="float: left"><b>Igitsina:</b></td>
+                                        <td>{{n.gender}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="float: left"><b>Aho yafatiwe:</b></td>
+                                        <td>{{n.placeOfIssue}}</td>
+                                    </tr>
+
+                                    <tr ng-hide="hideDocDetails">
+                                        <td style="float: left"><b>Aho wayisanga:</b></td>
+                                        <td><a href="" ng-click="showFind(n.docType,n.docNumb)" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span>Reba Igisubizo</a> </td>
+                                    </tr>
+
+                                </table>
+                                <table>
+                                    <tr ng-show="showDocDetails">
+                                        <td style="float: left"><b>Aho wayisanga:</b></td>
+                                        <td>{{n.placeOfFind}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+
+                </div>
+                <div class="col-lg-2"></div>
+
+           </div >
+            <br>
+
+    <div  class="col-lg-1"></div>
+
+    <div class="col-lg-12">
+
+    @footer()
+    </div>
+
+
+            <!-- Modal -->
+        <div id="myModal" class="modal fade " role="dialog">
+            <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Login</h4>
+                        <div ng-show="messages" class="{{messages.class}}">{{messages.msg}}  </div>
+                    </div>
+                    <form name="myForm" novalidate ng-submit="signin()">
+                    <div class="modal-body">
+                        <div class="">
+                            <div class="formholder">
+                                <div class="randompad">
+                                    <fieldset>
+                                        <label name="email">Email</label>
+                                        <input type="text" class="form-control" ng-model="userName"  placeholder="Enter your email or Phone"/>
+                                        <label name="password">Password</label>
+                                        <input class="form-control" type="password" ng-model="password"  placeholder="Enter your password" />
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-success"  value="Login" />
+                        <input type="button" class="btn btn-default" value="Close" data-dismiss="modal">
+                        @*<br>*@
+                        @*<div>Not have account?<a style="color: #2d6ca2" href="#" data-toggle="modal" data-target="#myRegister" id="loginform">Create new account</a></div>*@
+                    </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+            <!-- Modal -->
+        <div id="myRegister" class="modal fade " role="dialog">
+            <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">New User Registration</h4>
+                        <div ng-show="message" class="{{message.class}}">{{message.msg}}</div>
+                    </div>
+                    <form name="myForm" novalidate ng-submit="registerUser(user)">
+                    <div class="modal-body">
+                        <div class="">
+
+                            <div class="formholder">
+                                <div class="randompad">
+
+                                    <fieldset>
+                                        <div  class="form-group" ng-class="{'has-error has-feedback': myForm.names.$dirty && myForm.names.$invalid ,'has-success has-feedback': myForm.names.$dirty && myForm.names.$valid } ">
+                                            <label for="names" class=" col-lg-4 control-label">Names:</label>
+                                            <div class="col-lg-8">
+                                                <input type="text"   required class="form-control" pattern="^[A-z ]+$"  name="names" ng-model="user.names" placeholder="Enter your names"/>
+                                                <div role="alert" class="help-block" ng-messages="myForm.names.$error" ng-if="myForm.names.$dirty">
+                                                    <span ng-message="required">Field is required.</span>
+                                                    <span ng-message="pattern">Field must be alphabets only .</span>
+                                                    <span style="margin-right: 3%" ng-show="myForm.names.$dirty && myForm.names.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                    <span style="margin-right: 3%" ng-show="myForm.names.$dirty && myForm.names.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="form-group" ng-class="{'has-error has-feedback': myForm.phone.$dirty && myForm.phone.$invalid ,'has-success has-feedback': myForm.phone.$dirty && myForm.phone.$valid } ">
+                                            <label for="names" class="col-lg-4 control-label">Phone:</label>
+                                            <div class="col-lg-8">
+                                                <input type="text"  required class="form-control" pattern="^[0-9 ]+$"  name="phone" ng-model="user.phone" maxlength="10" minlength="10" placeholder="Enter your phone"/>
+                                                <div role="alert" class="help-block" ng-messages="myForm.phone.$error" ng-if="myForm.phone.$dirty">
+                                                    <span ng-message="maxlength">Field must be  10 characters.</span>
+                                                    <span ng-message="minlength">Field must be  10 characters.</span>
+                                                    <span ng-message="required">Field is required.</span>
+                                                    <span ng-message="pattern">Field must be numeric only .</span>
+                                                    <span style="margin-right: 3%" ng-show="myForm.phone.$dirty && myForm.phone.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                    <span style="margin-right: 3%" ng-show="myForm.phone.$dirty && myForm.phone.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="form-group" ng-class="{'has-error has-feedback': myForm.email.$dirty && myForm.email.$invalid ,'has-success has-feedback': myForm.email.$dirty && myForm.email.$valid } ">
+                                            <label for="names" class="col-lg-4 control-label">Email:</label>
+                                            <div class="col-lg-8">
+                                                <input type="email"  required class="form-control"  name="email" ng-model="user.email" placeholder="Enter your email"/>
+                                                <div role="alert" class="help-block" ng-messages="myForm.email.$error" ng-if="myForm.email.$dirty">
+                                                    <span ng-message="required">Field is required.</span>
+                                                    <span ng-message="email">Invalid Email .</span>
+                                                    <span style="margin-right: 3%" ng-show="myForm.email.$dirty && myForm.email.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                    <span style="margin-right: 3%" ng-show="myForm.email.$dirty && myForm.email.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="form-group" ng-class="{'has-error has-feedback': myForm.password.$dirty && myForm.password.$invalid ,'has-success has-feedback': myForm.password.$dirty && myForm.password.$valid } ">
+                                            <label for="password" class=" col-lg-4 control-label">Password:</label>
+                                            <div class="col-lg-8">
+                                                <input type="password"  required class="form-control" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  name="password" ng-model="user.password"   placeholder="Create password"/>
+                                                <div role="alert" class="help-block" ng-messages="myForm.password.$error" ng-if="myForm.password.$dirty">
+                                                    <span ng-message="required">Field is required.</span>
+                                                    <span ng-message="pattern">Field must contain uppercase,lowercase,number,Special character,min 8Character .</span>
+                                                    <span style="margin-right: 3%" ng-show="myForm.password.$dirty && myForm.password.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                                    <span style="margin-right: 3%" ng-show="myForm.password.$dirty && myForm.password.$invalid" class="glyphicon glyphicon-remove  form-control-feedback"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="form-group" >
+                                            <label for="names" class="col-lg-4 control-label">Comfirm password:</label>
+                                            <div class="col-lg-8">
+                                                <input type="password" ng-change="confirmPassword(user)"   class="form-control" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"  name="confPassword" ng-model="confPassword"  placeholder="Confirm password"/>
+                                                <div ng-show="passwordCheck" style="color: maroon">
+                                                    Password is not match.
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-success" ng-disabled="myForm.$invalid || passwordCheck" value="Login" />
+                        <input type="button" class="btn btn-default" value="Close" data-dismiss="modal">
+                    </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+}

@@ -1,0 +1,22 @@
+@(page:String)
+
+<nav style="width: 100%;background-color: #759e2e;" class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul style="color: orange" class="nav navbar-nav">
+                <li  ng-if="currentUser.role=='Admin'" class="@if(page=="dashBoard"){ active}"><a style="color:lightblue" href="/dashboard">Ahabanza</a></li>
+                <li ng-if="currentUser.role=='Admin'" class="@if(page=="user"){ active}"><a style="color:lightblue" href="/users">System users</a></li>
+                <li ng-if="currentUser.role=='Admin'" class="@if(page=="docType"){ active}"><a style="color:lightblue" href="/docTypep">Document type</a></li>
+                <li class="@if(page=="doc"){ active}"><a style="color:lightblue" href="/documentsp">Document</a></li>
+                <li class="@if(page=="msg"){ active}"><a style="color:lightblue" href="/message">Message</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
