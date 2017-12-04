@@ -547,6 +547,11 @@ app.controller("hrCtr", function ($scope, $http, $location, $window, $timeout,$f
             $scope.documents=data;
         })
     }
+    $scope.loadDocOnSearch=function(){
+        $http.get('/loadDocOnSearch/').success(function(data){
+            $scope.documentsearch=data;
+        })
+    }
     $scope.showFind=function(docType,docNumber){
         $http.get('/findedDoc/'+docType+'/'+docNumber+'/').success(function(data){
 
@@ -582,7 +587,44 @@ app.controller("hrCtr", function ($scope, $http, $location, $window, $timeout,$f
 
 
         });
-    }
+    };
+    $scope.saveDocument3=function(company){
+
+        $http.post('/registerDoc/', company).success(function (data, status, headers, config) {
+             if (data=='ok'){
+                 alert('Ibyo muduhaye tubibitse neza Murakoze gukoresha ishakiro.com.');
+                 $('#new').modal('hide');
+                 $scope.doc={};
+
+             }else if (data==='exist'){
+                 $scope.message = company.docNumb+" turayifite !.";
+
+
+             }
+        }).error(function(data, status){
+            $scope.message = "Error: Status code "+status+".";
+
+
+        });
+    };
+    $scope.saveDocument2=function(company){
+
+        $http.post('/registerDoc2/', company).success(function (data, status, headers, config) {
+            if (data==='ok'){
+                alert('Ibyo muduhaye tubibitse neza Murakoze gukoresha ishakiro.com.');
+               $('#lost').modal('hide');
+               $scope.doc={};
+
+            }else if (data==='exist'){
+                $scope.message = company.docNumb+" turayifite !.";
+
+            }
+        }).error(function(data, status){
+            $scope.message = "Error: Status code "+status+".";
+
+
+        });
+    };
 
     $scope.sendComment=function(){
 
@@ -767,7 +809,15 @@ app.controller("hrCtr", function ($scope, $http, $location, $window, $timeout,$f
         });
     }
 
-
+    $scope.changeOptionDoc=function (doc) {
+        if(doc==='National id'){
+            $scope.minleg='minlength="16"';
+            $scope.maxleg='maxlength="16"';
+        }else {
+            $scope.minleg='';
+            $scope.maxleg='';
+        }
+    };
 
     $scope.printDiv = function (divName) {
 

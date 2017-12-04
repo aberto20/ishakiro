@@ -7,17 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.List;
 
-/**
- * Created by Abel on 9/27/2017.
- */
 @Entity
-public class Document extends Model {
+public class DocOnSearch extends Model {
     @Id
-    public long id;
+    public static long id;
     public String regDate="";
+    public String contact="";
     public String docType="";
     public String docNumb="";
-    public String commNumber="";
     public String docHolder="";
     public String dob="";
     public String gender="";
@@ -25,16 +22,14 @@ public class Document extends Model {
     public String placeOfFind="";
     public String status="Pending";
 
-    public static Finder<Integer, Document> find = new Finder<Integer, Document>(Integer.class, Document.class);
+    public static Finder<Integer, DocOnSearch> find = new Finder<Integer, DocOnSearch>(Integer.class, DocOnSearch.class);
 
     public static boolean docExist(String docType,String docNumb){
-        List<Document> documentList=Document.find.where().and(Expr.like("doc_type",docType),Expr.like("doc_numb",docNumb)).findList();
+        List<DocOnSearch> documentList=DocOnSearch.find.where().and(Expr.like("doc_type",docType),Expr.like("doc_numb",docNumb)).findList();
         if (documentList.size()>0){
             return true;
         }else {
             return false;
         }
     }
-
-
 }

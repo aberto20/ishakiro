@@ -3,11 +3,25 @@
 
 # --- !Ups
 
+create table doc_on_search (
+  reg_date                  varchar(255),
+  contact                   varchar(255),
+  doc_type                  varchar(255),
+  doc_numb                  varchar(255),
+  doc_holder                varchar(255),
+  dob                       varchar(255),
+  gender                    varchar(255),
+  place_of_issue            varchar(255),
+  place_of_find             varchar(255),
+  status                    varchar(255))
+;
+
 create table document (
   id                        bigint auto_increment not null,
   reg_date                  varchar(255),
   doc_type                  varchar(255),
   doc_numb                  varchar(255),
+  comm_number               varchar(255),
   doc_holder                varchar(255),
   dob                       varchar(255),
   gender                    varchar(255),
@@ -50,6 +64,8 @@ create table user (
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table doc_on_search;
 
 drop table document;
 

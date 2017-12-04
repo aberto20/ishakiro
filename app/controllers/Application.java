@@ -2,10 +2,7 @@ package controllers;
 
 
 import com.avaje.ebean.Expr;
-import models.Document;
-import models.DocumentType;
-import models.Message;
-import models.User;
+import models.*;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.*;
@@ -35,6 +32,12 @@ public class Application extends Controller {
             return ok(index.render());
         }
         return ok(dashBoard.render());
+    }
+    public static Result docOnSerch() {
+        if (session("userId")==null){
+            return ok(index.render());
+        }
+        return ok(docOnSearch.render());
     }
     public static Result message() {
         if (session("userId")==null){
@@ -121,6 +124,10 @@ public class Application extends Controller {
         List<Document> user=Document.find.where().findList();
         return ok(Json.toJson(user));
     }
+    public static Result loadDocOnSearch(){
+        List<DocOnSearch> user=DocOnSearch.find.where().order().desc("status").setMaxRows(5000).findList();
+        return ok(Json.toJson(user));
+    }
     public static Result searchDocument(String doc){
         List<Document> user=Document.find.where().like("status","Pending").or(Expr.like("doc_numb",doc),Expr.like("doc_holder","%"+doc+"%")).findList();
         return ok(Json.toJson(user));
@@ -167,6 +174,21 @@ public class Application extends Controller {
         SimpleDateFormat dateformatddMMyyyy = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         if (Document.docExist(doc.docType,doc.docNumb)){
             Document document=Document.find.where().and(Expr.like("doc_type",doc.docType),Expr.like("doc_numb",doc.docNumb)).findUnique();
+            document.status="Pending";
+            document.update();
+            return ok("exist");
+        }
+        doc.regDate=dateformatddMMyyyy.format(date);
+        doc.save();
+        return ok("ok");
+    }
+    public static Result registerDoc2(){
+        Form<DocOnSearch> userForm=Form.form(DocOnSearch.class).bindFromRequest();
+        DocOnSearch doc=userForm.get();
+        Date date=new Date();
+        SimpleDateFormat dateformatddMMyyyy = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        if (DocOnSearch.docExist(doc.docType,doc.docNumb)){
+            DocOnSearch document=DocOnSearch.find.where().and(Expr.like("doc_type",doc.docType),Expr.like("doc_numb",doc.docNumb)).findUnique();
             document.status="Pending";
             document.update();
             return ok("exist");
